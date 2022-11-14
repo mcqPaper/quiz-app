@@ -31,7 +31,7 @@ const Main = ({ startQuiz }) => {
   const [questionsType, setQuestionsType] = useState('0');
   const [countdownTime, setCountdownTime] = useState({
     hours: 0,
-    minutes: 120,
+    minutes: 300,
     seconds: 0,
   });
   const [processing, setProcessing] = useState(false);

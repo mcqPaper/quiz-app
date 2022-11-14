@@ -33,9 +33,9 @@ const calculateGrade = score => {
   }
 
   if (score >= 60) {
-    remarks = 'Congratulations, YOU PASSED!';
+    remarks = 'Thanks for participating.....';
   } else {
-    remarks = 'Sorry, YOU FAILED!';
+    remarks = 'Thanks for participating.....';
   }
 
   return {
