@@ -41,7 +41,7 @@ const Stats = ({
         {`${Number(hours)}h ${Number(minutes)}m ${Number(seconds)}s`}
       </Header>
       <div style={{ marginTop: 35 }}>
-        <Button
+        {/* <Button
           primary
           content="Play Again"
           onClick={replayQuiz}
@@ -58,7 +58,7 @@ const Stats = ({
           icon="home"
           labelPosition="left"
           style={{ marginBottom: 8 }}
-        />
+        /> */}
         <ShareButton />
       </div>
     </Segment>

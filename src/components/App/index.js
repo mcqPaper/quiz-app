@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 
 import Layout from '../Layout';
 import Loader from '../Loader';
@@ -15,10 +16,13 @@ const App = () => {
   const [isQuizStarted, setIsQuizStarted] = useState(false);
   const [isQuizCompleted, setIsQuizCompleted] = useState(false);
   const [resultData, setResultData] = useState(null);
+  const [userName, setName] = useState(null);
 
-  const startQuiz = (data, countdownTime) => {
+  const startQuiz = (data, countdownTime, userName) => {
     setLoading(true);
     setCountdownTime(countdownTime);
+    console.log(userName)
+    setName(userName)
 
     setTimeout(() => {
       setData(data);
@@ -27,7 +31,14 @@ const App = () => {
     }, 1000);
   };
 
-  const endQuiz = resultData => {
+  const endQuiz = (resultData, userName) => {
+    console.log('quiz end: ', userName)
+
+    axios.post('http://35.79.209.161:8080/api/projects/create', {
+      name: userName,
+      results: resultData
+    }).then(response => this.setState({ response: response.data }));
+
     setLoading(true);
 
     setTimeout(() => {
@@ -36,6 +47,7 @@ const App = () => {
       setResultData(resultData);
       setLoading(false);
     }, 2000);
+    
   };
 
   const replayQuiz = () => {
@@ -76,7 +88,7 @@ const App = () => {
         <Main startQuiz={startQuiz} />
       )}
       {!loading && isQuizStarted && (
-        <Quiz data={data} countdownTime={countdownTime} endQuiz={endQuiz} />
+        <Quiz data={data} countdownTime={countdownTime} endQuiz={endQuiz} userName={userName}/>
       )}
       {!loading && isQuizCompleted && (
         <Result {...resultData} replayQuiz={replayQuiz} resetQuiz={resetQuiz} />

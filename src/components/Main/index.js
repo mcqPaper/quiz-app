@@ -26,6 +26,7 @@ import Offline from '../Offline';
 
 const Main = ({ startQuiz }) => {
   const [category, setCategory] = useState('0');
+  const [userName, setName] = useState("");
   const [numOfQuestions, setNumOfQuestions] = useState(5);
   const [difficulty, setDifficulty] = useState('0');
   const [questionsType, setQuestionsType] = useState('0');
@@ -43,13 +44,7 @@ const Main = ({ startQuiz }) => {
   };
 
   let allFieldsSelected = false;
-  if (
-    category &&
-    numOfQuestions &&
-    difficulty &&
-    questionsType &&
-    (countdownTime.hours || countdownTime.minutes || countdownTime.seconds)
-  ) {
+  if (userName) {
     allFieldsSelected = true;
   }
 
@@ -95,7 +90,8 @@ const Main = ({ startQuiz }) => {
           setProcessing(false);
           startQuiz(
             results,
-            countdownTime.hours + countdownTime.minutes + countdownTime.seconds
+            countdownTime.hours + countdownTime.minutes + countdownTime.seconds,
+            userName
           );
         }, 1000)
       )
@@ -131,6 +127,16 @@ const Main = ({ startQuiz }) => {
               )}
               <Divider />
               <Item.Meta>
+              <form>
+                <label>Enter your name : 
+                  <input
+                    type="text" 
+                    value={userName}
+                    onChange={(e) => setName(e.target.value)
+                    }
+                  />
+                </label>
+              </form>
                 {/* <Dropdown
                   fluid
                   selection

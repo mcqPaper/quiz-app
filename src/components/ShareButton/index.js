@@ -22,7 +22,7 @@ const ShareButton = () => {
           size="big"
           circular
           icon="share alternate"
-          onClick={handleClick}
+          //onClick={handleClick}
         />
       ) : (
         <Modal

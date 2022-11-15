@@ -16,7 +16,7 @@ import he from 'he';
 import Countdown from '../Countdown';
 import { getLetter } from '../../utils';
 
-const Quiz = ({ data, countdownTime, endQuiz }) => {
+const Quiz = ({ data, countdownTime, endQuiz, userName }) => {
   const [questionIndex, setQuestionIndex] = useState(0);
   const [correctAnswers, setCorrectAnswers] = useState(0);
   const [userSlectedAns, setUserSlectedAns] = useState(null);
@@ -47,7 +47,7 @@ const Quiz = ({ data, countdownTime, endQuiz }) => {
         correctAnswers: correctAnswers + point,
         timeTaken,
         questionsAndAnswers: qna
-      });
+      }, userName);
     }
 
     setCorrectAnswers(correctAnswers + point);
